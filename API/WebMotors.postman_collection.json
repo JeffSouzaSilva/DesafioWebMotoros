@@ -1,0 +1,863 @@
+{
+	"info": {
+		"_postman_id": "7da67a22-7fe2-4c34-8fc2-e438e9b8b3f9",
+		"name": "WebMotors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API para recuperar modelos cadastrados na webmotors",
+			"item": [
+				{
+					"name": "Validar sucesso - /api/OnlineChallenge/Make",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff901606-143b-4451-96b4-9cc20e664703",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de sucesso\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - código de resposta de sucesso 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAccept = pm.environment.get(\"headerAccept\");\r",
+									"\r",
+									"// Validar Accept\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(headerAccept + \"; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "{{headerAccept}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Make",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Make"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha header - /api/OnlineChallenge/Make",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30b1449e-5075-4385-9351-d8a80feb83f1",
+								"exec": [
+									"\r",
+									"// Validar código de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - código de resposta 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAcceptFail = pm.environment.get(\"headerAcceptFail\");\r",
+									"\r",
+									"// Validar que mesmo ao passar um Accept, diferente de application/json, text/json, application/xml e text/xml. O padrão retornado será do tipo application/json.\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAcceptFail}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Make",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Make"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Example Value:\r\n\r\n[\r\n  {\r\n    \"MakeID\": 1,\r\n    \"ID\": 1,\r\n    \"Name\": \"Agile\"\r\n  },\r\n  {\r\n    \"MakeID\": 1,\r\n    \"ID\": 2,\r\n    \"Name\": \"Astra\"\r\n  },\r\n  {\r\n    \"MakeID\": 1,\r\n    \"ID\": 3,\r\n    \"Name\": \"Onix\"\r\n  }\r\n]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "19a71dfc-d045-4975-9bb3-5435f891ab06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2bf746b9-847c-4594-8542-51ddc76b440f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API para recuperar marcas cadastradas na webmotors",
+			"item": [
+				{
+					"name": "Validar sucesso  - /api/OnlineChallenge/Model",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a505650b-49ee-4aa8-8cf7-c8d8066ee37f",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de sucesso\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - código de resposta de sucesso 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAccept = pm.environment.get(\"headerAccept\");\r",
+									"\r",
+									"// Validar Accept\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(headerAccept + \"; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "{{headerAccept}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Model?MakeID={{makeID}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Model"
+							],
+							"query": [
+								{
+									"key": "MakeID",
+									"value": "{{makeID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha header - /api/OnlineChallenge/Model",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "908df57c-1dc6-49bc-9f06-06a246a65322",
+								"exec": [
+									"\r",
+									"// Validar código de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - código de resposta 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAcceptFail = pm.environment.get(\"headerAcceptFail\");\r",
+									"\r",
+									"// Validar que mesmo ao passar um Accept, diferente de application/json, text/json, application/xml e text/xml. O padrão retornado será do tipo application/json.\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAccept}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Model?MakeID={{makeID}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Model"
+							],
+							"query": [
+								{
+									"key": "MakeID",
+									"value": "{{makeID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha não passagem de parâmetro obrigatório - /api/OnlineChallenge/Model",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f585a106-3ad4-453a-8b43-4fd3d1f1f3cb",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de erro\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - código de resposta de erro 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Tempo de resposta menor que 600ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"//Validar que ao não passar o parâmetro MakeID, o sistem retornará uma mensagem de erro\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Validar mensagem de erro\", function () {\r",
+									"  pm.expect(pm.response.json().Message).to.eql(pm.environment.get(\"messageIDNullError\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAccept}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Model?MakeID={{IDNull}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Model"
+							],
+							"query": [
+								{
+									"key": "MakeID",
+									"value": "{{IDNull}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Example Value:\r\n\r\n[\r\n  {\r\n    \"ID\": 1,\r\n    \"Name\": \"Chevrolet\"\r\n  },\r\n  {\r\n    \"ID\": 2,\r\n    \"Name\": \"Honda\"\r\n  },\r\n  {\r\n    \"ID\": 3,\r\n    \"Name\": \"Ford\"\r\n  }\r\n]",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7210a1bb-cf39-41b1-b1f7-cd4fffbf8a25",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5203251e-1697-4526-9937-f27557dea326",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API para recuperar versões cadastradas na webmotors",
+			"item": [
+				{
+					"name": "Validar sucesso - /api/OnlineChallenge/Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0acad88c-1d2a-4c9b-abce-67ae89bf49c8",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de sucesso\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - código de resposta de sucesso 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Version - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAccept = pm.environment.get(\"headerAccept\");\r",
+									"\r",
+									"// Validar Accept\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Version - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(headerAccept + \"; charset=utf-8\")\r",
+									"});\r",
+									"// Validar a vesão pelo nome\r",
+									"pm.test(\"GET /api/OnlineChallenge/Version - Validar a vesão pelo nome\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(pm.environment.get(\"versionName\"));\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "{{headerAccept}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Version?ModelID={{modelID}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Version"
+							],
+							"query": [
+								{
+									"key": "ModelID",
+									"value": "{{modelID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha header - /api/OnlineChallenge/Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "55260baf-bfe1-4db6-af77-b21b12cfcb56",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de sucesso\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - código de resposta de sucesso 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAcceptFail = pm.environment.get(\"headerAcceptFail\");\r",
+									"\r",
+									"// Validar que mesmo ao passar um Accept, diferente de application/json, text/json, application/xml e text/xml. O padrão retornado será do tipo application/json.\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAcceptFail}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Version?ModelID={{modelID}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Version"
+							],
+							"query": [
+								{
+									"key": "ModelID",
+									"value": "{{modelID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha não passagem de parâmetro obrigatório - /api/OnlineChallenge/Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7f54a32-5aa8-4e64-9d47-d9e07acb6c23",
+								"exec": [
+									"\r",
+									"// Validar código de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - código de erro 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Tempo de resposta menor que 600ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"//Validar que ao não passar o parâmetro MakeID, o sistem retornará uma mensagem de erro\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Model - Validar mensagem de erro\", function () {\r",
+									"  pm.expect(pm.response.json().Message).to.eql(pm.environment.get(\"messageIDNullError\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAccept}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Version?ModelID={{IDNull}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Version"
+							],
+							"query": [
+								{
+									"key": "ModelID",
+									"value": "{{IDNull}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Example Value:\r\n\r\n[\r\n  {\r\n    \"ModelID\": 1,\r\n    \"ID\": 6,\r\n    \"Name\": \"1.5 DX 16V FLEX 4P AUTOMÁTICO\"\r\n  },\r\n  {\r\n    \"ModelID\": 1,\r\n    \"ID\": 7,\r\n    \"Name\": \"1.5 LX 16V FLEX 4P MANUAL\"\r\n  },\r\n  {\r\n    \"ModelID\": 1,\r\n    \"ID\": 8,\r\n    \"Name\": \"2.0 EXL 4X4 16V GASOLINA 4P AUTOMÁTICO\"\r\n  },\r\n  {\r\n    \"ModelID\": 1,\r\n    \"ID\": 9,\r\n    \"Name\": \"1.8 16V EVO FLEX FREEDOM OPEN EDITION AUTOMÁTICO\"\r\n  },\r\n  {\r\n    \"ModelID\": 1,\r\n    \"ID\": 10,\r\n    \"Name\": \"1.0 MPI EL 8V FLEX 4P MANUAL\"\r\n  }\r\n]",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API para recuperar veiculos cadastradas na webmotors",
+			"item": [
+				{
+					"name": "Validar sucesso - /api/OnlineChallenge/Vehicles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd043d6e-9353-48b7-8509-bf008b769aca",
+								"exec": [
+									"\r",
+									"// Validar código de resposta de sucesso\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - código de resposta de sucesso 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAccept = pm.environment.get(\"headerAccept\");\r",
+									"\r",
+									"// Validar Accept\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(headerAccept + \"; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									"// Validar a vesão pelo nome\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - Validar informações do veiculo\", () => {\r",
+									"  pm.expect(pm.response.text()).to.include(pm.environment.get(\"makeOfVehicle\"));\r",
+									"  pm.expect(pm.response.text()).to.include(pm.environment.get(\"colorOfVehicle\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "{{headerAccept}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Vehicles?Page={{page}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Vehicles"
+							],
+							"query": [
+								{
+									"key": "Page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha header - /api/OnlineChallenge/Make",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2a8e5db-f8a9-4117-9a12-d11a8be9e32e",
+								"exec": [
+									"\r",
+									"// Validar código de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - código de resposta 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Tempo de resposta menor que 450ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"var headerAcceptFail = pm.environment.get(\"headerAcceptFail\");\r",
+									"\r",
+									"// Validar que mesmo ao passar um Accept, diferente de application/json, text/json, application/xml e text/xml. O padrão retornado será do tipo application/json.\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Make - Validar o Accept\", function () {\r",
+									"pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json; charset=utf-8\")\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAcceptFail}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Vehicles?Page={{page}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Vehicles"
+							],
+							"query": [
+								{
+									"key": "Page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validar falha não passagem de parâmetro obrigatório - /api/OnlineChallenge/Vehicles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3d1dcc0-4787-4413-ad11-648a6180abbc",
+								"exec": [
+									"\r",
+									"// Validar código de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - código de erro 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"//Validar tempo de resposta\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - Tempo de resposta menor que 600ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"//Validar que ao não passar o parâmetro MakeID, o sistem retornará uma mensagem de erro\r",
+									"pm.test(\"[GET] /api/OnlineChallenge/Vehicles - Validar mensagem de erro\", function () {\r",
+									"  pm.expect(pm.response.json().Message).to.eql(pm.environment.get(\"messageIDNullError\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "{{headerAccept}}"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{hostUrl}}/api/OnlineChallenge/Vehicles?Page={{IDNull}}",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"api",
+								"OnlineChallenge",
+								"Vehicles"
+							],
+							"query": [
+								{
+									"key": "Page",
+									"value": "{{IDNull}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Example value:\r\n\r\n[\r\n  {\r\n    \"ID\": 1,\r\n    \"Make\": \"Honda\",\r\n    \"Model\": \"City\",\r\n    \"Version\": \"2.0 EXL 4X4 16V GASOLINA 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/01.jpg\",\r\n    \"KM\": 0,\r\n    \"Price\": \"59000,00\",\r\n    \"YearModel\": 2018,\r\n    \"YearFab\": 2017,\r\n    \"Color\": \"Azul\"\r\n  },\r\n  {\r\n    \"ID\": 2,\r\n    \"Make\": \"Mitsubishi\",\r\n    \"Model\": \"Lancer\",\r\n    \"Version\": \"2.0 EVO 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/02.jpg\",\r\n    \"KM\": 47500,\r\n    \"Price\": \"49000,00\",\r\n    \"YearModel\": 2012,\r\n    \"YearFab\": 2012,\r\n    \"Color\": \"Branco\"\r\n  },\r\n  {\r\n    \"ID\": 3,\r\n    \"Make\": \"Honda\",\r\n    \"Model\": \"Fit\",\r\n    \"Version\": \"1.4 LXL 16V FLEX 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/03.jpg\",\r\n    \"KM\": 0,\r\n    \"Price\": \"78000,00\",\r\n    \"YearModel\": 2018,\r\n    \"YearFab\": 2018,\r\n    \"Color\": \"Preto\"\r\n  },\r\n  {\r\n    \"ID\": 4,\r\n    \"Make\": \"Mitsubishi\",\r\n    \"Model\": \"Lancer\",\r\n    \"Version\": \"2.0 EVO 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/04.jpg\",\r\n    \"KM\": 12900,\r\n    \"Price\": \"59000,00\",\r\n    \"YearModel\": 2016,\r\n    \"YearFab\": 2015,\r\n    \"Color\": \"Vermelho\"\r\n  },\r\n  {\r\n    \"ID\": 5,\r\n    \"Make\": \"Honda\",\r\n    \"Model\": \"Fit\",\r\n    \"Version\": \"1.4 LXL 16V FLEX 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/05.jpg\",\r\n    \"KM\": 12000,\r\n    \"Price\": \"55000,00\",\r\n    \"YearModel\": 2016,\r\n    \"YearFab\": 2016,\r\n    \"Color\": \"Azul\"\r\n  },\r\n  {\r\n    \"ID\": 6,\r\n    \"Make\": \"Chevrolet\",\r\n    \"Model\": \"Agile\",\r\n    \"Version\": \"1.4 MPFI EFFECT 8V FLEX 4P AUTOMATIZADO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/06.jpg\",\r\n    \"KM\": 12000,\r\n    \"Price\": \"37000,00\",\r\n    \"YearModel\": 2014,\r\n    \"YearFab\": 2013,\r\n    \"Color\": \"Vermelho\"\r\n  },\r\n  {\r\n    \"ID\": 7,\r\n    \"Make\": \"Chevrolet\",\r\n    \"Model\": \"Agile\",\r\n    \"Version\": \"1.4 MPFI EFFECT 8V FLEX 4P AUTOMATIZADO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/07.jpg\",\r\n    \"KM\": 0,\r\n    \"Price\": \"45000,00\",\r\n    \"YearModel\": 2018,\r\n    \"YearFab\": 2017,\r\n    \"Color\": \"Cinza\"\r\n  },\r\n  {\r\n    \"ID\": 8,\r\n    \"Make\": \"Ford\",\r\n    \"Model\": \"Ecosport\",\r\n    \"Version\": \"1.6 FREESTYLE 16V FLEX 4P MANUAL\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/08.jpg\",\r\n    \"KM\": 93000,\r\n    \"Price\": \"45000,00\",\r\n    \"YearModel\": 2013,\r\n    \"YearFab\": 2012,\r\n    \"Color\": \"Branca\"\r\n  },\r\n  {\r\n    \"ID\": 9,\r\n    \"Make\": \"Chevrolet\",\r\n    \"Model\": \"Agile\",\r\n    \"Version\": \"1.4 MPFI EFFECT 8V FLEX 4P AUTOMATIZADO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/06.jpg\",\r\n    \"KM\": 12000,\r\n    \"Price\": \"37000,00\",\r\n    \"YearModel\": 2014,\r\n    \"YearFab\": 2013,\r\n    \"Color\": \"Vermelho\"\r\n  },\r\n  {\r\n    \"ID\": 10,\r\n    \"Make\": \"Honda\",\r\n    \"Model\": \"Fit\",\r\n    \"Version\": \"1.4 LXL 16V FLEX 4P AUTOMÁTICO\",\r\n    \"Image\": \"http://desafioonline.webmotors.com.br/content/img/05.jpg\",\r\n    \"KM\": 12000,\r\n    \"Price\": \"55000,00\",\r\n    \"YearModel\": 2016,\r\n    \"YearFab\": 2016,\r\n    \"Color\": \"Azul\"\r\n  }\r\n]",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
