@@ -6,6 +6,7 @@ class BuscaPage
   end
 
   def buscar(marca, modelo, versao)
+    sleep 300
     find("#searchBar").set marca
     first("div.SearchBar__results__result__name", text: marca).click
     first(".Filters__line--icon--close").click 
@@ -31,6 +32,15 @@ class BuscaPage
   end
 
   def listagemEstoque
+     sleep 3
+
+     find(text: "Press & Hold").press
+
+
+     source = find('Press & Hold')
+     target = find('Press & Hold')
+     drag_to(target)
+
     find(".sc-htoDjs", text: "OK").click
 
     status = false
